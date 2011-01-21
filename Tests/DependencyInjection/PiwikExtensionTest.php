@@ -16,7 +16,7 @@ use Bundle\Knplabs\PiwikBundle\DependencyInjection\PiwikExtension;
  * file that was distributed with this source code.
  */
 
-class RestfulControllersExtensionTest extends \PHPUnit_Framework_TestCase
+class PiwikExtensionTest extends \PHPUnit_Framework_TestCase
 {
     private $container;
     private $extension;
