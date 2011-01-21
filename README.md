@@ -17,7 +17,7 @@ Provides support for Piwik API into your Symfony2 projects.
 
 ### Add Knplabs\PiwikBundle to your src/Bundle dir
 
-    git submodule add git://github.com/knplabs/PiwikBundle.git src/Bundle/Knplabs/KnplabsPiwikBundle
+    git submodule add git://github.com/knplabs/PiwikBundle.git src/Bundle/Knplabs/PiwikBundle
 
 ### Add KnplabsPiwikBundle to your application kernel
 
