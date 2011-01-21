@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="piwik.client.class">Knplabs\PiwikClient\Client</parameter>
+        <parameter key="piwik.client.connection.service">piwik.connection.http</parameter>
+        <parameter key="piwik.client.token">null</parameter>
+
+        <parameter key="piwik.connection.http.class">Knplabs\PiwikClient\Connection\HttpConnection</parameter>
+        <parameter key="piwik.connection.http.url">null</parameter>
+
+        <parameter key="piwik.connection.piwik.class">Knplabs\PiwikClient\Connection\PiwikConnection</parameter>
+        <parameter key="piwik.connection.piwik.init">false</parameter>
+    </parameters>
+    <services>
+
+        <service id="piwik.client" class="%piwik.client.class%">
+            <argument type="service" id="%piwik.client.connection.service%" />
+            <argument>%piwik.client.token%</argument>
+        </service>
+
+        <service id="piwik.connection.http" class="%piwik.connection.http.class%">
+            <argument>%piwik.connection.http.url%</argument>
+        </service>
+
+        <service id="piwik.connection.piwik" class="%piwik.connection.piwik.class%">
+            <argument>%piwik.connection.piwik.init%</argument>
+        </service>
+
+    </services>
+</container>
