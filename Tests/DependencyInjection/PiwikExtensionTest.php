@@ -37,12 +37,11 @@ class PiwikExtensionTest extends \PHPUnit_Framework_TestCase
         $this->extension->configLoad(array(), $this->container);
 
         $this->assertEquals('Knplabs\PiwikClient\Client', $this->container->getParameter('piwik.client.class'));
-        $this->assertEquals('piwik.connection.http', $this->container->getParameter('piwik.client.connection.service'));
         $this->assertNull($this->container->getParameter('piwik.client.token'));
         $definition = $this->container->getDefinition('piwik.client');
         $this->assertEquals('%piwik.client.class%', $definition->getClass());
         $this->assertEquals(2, count($args = $definition->getArguments()));
-        $this->assertEquals(new Reference('%piwik.client.connection.service%'), $args[0]);
+        $this->assertEquals(new Reference('piwik.connection.http'), $args[0]);
         $this->assertEquals('%piwik.client.token%', $args[1]);
 
         $this->assertEquals(
@@ -74,7 +73,8 @@ class PiwikExtensionTest extends \PHPUnit_Framework_TestCase
             'token'         => 'some_token'
         ), $this->container);
 
-        $this->assertEquals('piwik.connection.http', $this->container->getParameter('piwik.client.connection.service'));
+        $args = $this->container->getDefinition('piwik.client')->getArguments();
+        $this->assertEquals(new Reference('piwik.connection.http'), $args[0]);
         $this->assertEquals('http://example.com', $this->container->getParameter('piwik.connection.http.url'));
         $this->assertEquals('some_token', $this->container->getParameter('piwik.client.token'));
     }
@@ -87,7 +87,8 @@ class PiwikExtensionTest extends \PHPUnit_Framework_TestCase
             'init'          => true
         ), $this->container);
 
-        $this->assertEquals('piwik.connection.piwik', $this->container->getParameter('piwik.client.connection.service'));
+        $args = $this->container->getDefinition('piwik.client')->getArguments();
+        $this->assertEquals(new Reference('piwik.connection.piwik'), $args[0]);
         $this->assertEquals('some_token', $this->container->getParameter('piwik.client.token'));
         $this->assertTrue($this->container->getParameter('piwik.connection.piwik.init'));
     }

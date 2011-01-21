@@ -33,7 +33,8 @@ class PiwikExtension extends Extension
         }
 
         if (isset($config['connection'])) {
-            $container->setParameter('piwik.client.connection.service', $config['connection']);
+            $definition = $container->getDefinition('piwik.client');
+            $definition->setArguments(array(new Reference($config['connection'])));
         }
         if (isset($config['url'])) {
             $container->setParameter('piwik.connection.http.url', $config['url']);

@@ -5,7 +5,6 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="piwik.client.class">Knplabs\PiwikClient\Client</parameter>
-        <parameter key="piwik.client.connection.service">piwik.connection.http</parameter>
         <parameter key="piwik.client.token">null</parameter>
 
         <parameter key="piwik.connection.http.class">Knplabs\PiwikClient\Connection\HttpConnection</parameter>
@@ -17,7 +16,7 @@
     <services>
 
         <service id="piwik.client" class="%piwik.client.class%">
-            <argument type="service" id="%piwik.client.connection.service%" />
+            <argument type="service" id="piwik.connection.http" />
             <argument>%piwik.client.token%</argument>
         </service>
 

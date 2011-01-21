@@ -46,12 +46,33 @@ Provides support for Piwik API into your Symfony2 projects.
         url:        http://piwik.example.com
         token:      PIWIK_API_TOKEN
 
+Don't forget to add Buzz library for HTTP requests into vendors:
+
+    git submodule add https://github.com/kriswallsmith/Buzz.git src/vendor/Buzz
+
+And to autoload.php:
+
+    // src/autoload.php
+    $loader->registerNamespaces(array(
+        // ...
+        'Buzz'  => $vendorDir.'/Buzz/lib',
+        // ...
+    ));
+
 ### Local PHP client (Piwik on local server)
 
     # app/config/config.yml
     piwik.config:
         connection: piwik.connection.piwik
         token:      PIWIK_API_TOKEN
+
+You need to require Piwik library in autoload.php:
+
+    // src/autoload.php
+    // ...
+    require_once PIWIK_INCLUDE_PATH . "/index.php";
+    require_once PIWIK_INCLUDE_PATH . "/core/API/Request.php";
+    Piwik_FrontController::getInstance()->init();
 
 ## Usage
 
