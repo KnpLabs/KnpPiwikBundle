@@ -61,7 +61,7 @@ And to autoload.php:
 
 ### Local PHP client (Piwik on local server)
 
-    # app/config/config.yml
+    # app/config/config_dev.yml
     piwik.config:
         connection: piwik.connection.piwik
         token:      PIWIK_API_TOKEN
@@ -73,6 +73,14 @@ You need to require Piwik library in autoload.php:
     require_once PIWIK_INCLUDE_PATH . "/index.php";
     require_once PIWIK_INCLUDE_PATH . "/core/API/Request.php";
     Piwik_FrontController::getInstance()->init();
+
+### Testing
+
+There is another connection, called stub. It's used for testing:
+
+    # app/config/config_test.yml
+    piwik.config:
+        connection: piwik.connection.stub
 
 ## Usage
 

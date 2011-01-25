@@ -12,6 +12,8 @@
 
         <parameter key="piwik.connection.piwik.class">Knplabs\PiwikClient\Connection\PiwikConnection</parameter>
         <parameter key="piwik.connection.piwik.init">false</parameter>
+
+        <parameter key="piwik.connection.stub.class">Knplabs\PiwikClient\Connection\StubConnection</parameter>
     </parameters>
     <services>
 
@@ -27,6 +29,8 @@
         <service id="piwik.connection.piwik" class="%piwik.connection.piwik.class%">
             <argument>%piwik.connection.piwik.init%</argument>
         </service>
+
+        <service id="piwik.connection.stub" class="%piwik.connection.stub.class%" />
 
     </services>
 </container>
