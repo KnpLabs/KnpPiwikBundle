@@ -28,22 +28,24 @@ class PiwikExtension extends Extension
     {
         $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
 
-        if (!$container->hasDefinition('piwik.client.class')) {
+        if (!$container->hasDefinition('piwik.client')) {
             $loader->load('piwik.xml');
         }
 
         if (isset($config['connection'])) {
-            $definition = $container->getDefinition('piwik.client');
-            $definition->setArguments(array(new Reference($config['connection'])));
+            $definition     = $container->getDefinition('piwik.client');
+            $arguments      = $definition->getArguments();
+            $arguments[0]   = new Reference($config['connection']);
+            $definition->setArguments($arguments);
         }
         if (isset($config['url'])) {
             $container->setParameter('piwik.connection.http.url', $config['url']);
         }
-        if (isset($config['token'])) {
-            $container->setParameter('piwik.client.token', $config['token']);
-        }
         if (isset($config['init'])) {
             $container->setParameter('piwik.connection.piwik.init', (bool) $config['init']);
+        }
+        if (isset($config['token'])) {
+            $container->setParameter('piwik.client.token', $config['token']);
         }
     }
 
