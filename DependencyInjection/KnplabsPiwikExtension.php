@@ -1,13 +1,14 @@
 <?php
 
-namespace Bundle\Knplabs\PiwikBundle\DependencyInjection;
+namespace Knplabs\Bundle\PiwikBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Resource\FileResource;
 
 /*
  * This file is part of the PiwikBundle.
@@ -16,7 +17,7 @@ use Symfony\Component\DependencyInjection\Definition;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-class PiwikExtension extends Extension
+class KnplabsPiwikExtension extends Extension
 {
     /**
      * Loads the piwik configuration.
@@ -24,28 +25,30 @@ class PiwikExtension extends Extension
      * @param array $config  An array of configuration settings
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container A ContainerBuilder instance
      */
-    public function configLoad($config, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
-        $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         if (!$container->hasDefinition('piwik.client')) {
             $loader->load('piwik.xml');
         }
 
-        if (isset($config['connection'])) {
-            $definition     = $container->getDefinition('piwik.client');
-            $arguments      = $definition->getArguments();
-            $arguments[0]   = new Reference($config['connection']);
-            $definition->setArguments($arguments);
-        }
-        if (isset($config['url'])) {
-            $container->setParameter('piwik.connection.http.url', $config['url']);
-        }
-        if (isset($config['init'])) {
-            $container->setParameter('piwik.connection.piwik.init', (bool) $config['init']);
-        }
-        if (isset($config['token'])) {
-            $container->setParameter('piwik.client.token', $config['token']);
+        foreach ($configs as $config) {
+            if (isset($config['connection'])) {
+                $definition     = $container->getDefinition('piwik.client');
+                $arguments      = $definition->getArguments();
+                $arguments[0]   = new Reference($config['connection']);
+                $definition->setArguments($arguments);
+            }
+            if (isset($config['url'])) {
+                $container->setParameter('piwik.connection.http.url', $config['url']);
+            }
+            if (isset($config['init'])) {
+                $container->setParameter('piwik.connection.piwik.init', (bool) $config['init']);
+            }
+            if (isset($config['token'])) {
+                $container->setParameter('piwik.client.token', $config['token']);
+            }
         }
     }
 
@@ -66,6 +69,6 @@ class PiwikExtension extends Extension
 
     public function getAlias()
     {
-        return 'piwik';
+        return 'knplabs_piwik';
     }
 }

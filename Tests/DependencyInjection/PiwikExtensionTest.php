@@ -1,12 +1,12 @@
 <?php
 
-namespace Bundle\Knplabs\PiwikBundle\Tests\DependencyInjection;
+namespace Knplabs\Bundle\PiwikBundle\Tests\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
-use Bundle\Knplabs\PiwikBundle\DependencyInjection\PiwikExtension;
+use Knplabs\Bundle\PiwikBundle\DependencyInjection\PiwikExtension;
 
 /*
  * This file is part of the PiwikBundle.
