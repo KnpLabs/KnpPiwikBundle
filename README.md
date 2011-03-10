@@ -4,29 +4,29 @@ Provides support for Piwik API into your Symfony2 projects.
 
 ### Add Knplabs\PiwikClient to vendors
 
-    git submodule add git://github.com/knplabs/PiwikClient.git src/vendor/PiwikClient
+    git submodule add git://github.com/knplabs/PiwikClient.git vendor/PiwikClient
 
 ### Specify Knplabs\PiwikClient in autoload.php
 
-    // src/autoload.php
+    // app/autoload.php
     $loader->registerNamespaces(array(
         // ...
-        'Knplabs\PiwikClient'   => $vendorDir.'/PiwikClient/src',
+        'Knplabs\PiwikClient'   => __DIR__.'/../vendor/PiwikClient/src',
         // ...
     ));
 
 ### Add Knplabs\PiwikBundle to your src/Bundle dir
 
-    git submodule add git://github.com/knplabs/PiwikBundle.git src/Bundle/Knplabs/PiwikBundle
+    git submodule add git://github.com/knplabs/PiwikBundle.git vendor/bundles/Knplabs/Bundle/PiwikBundle
 
 ### Add KnplabsPiwikBundle to your application kernel
 
     // app/AppKernel.php
     public function registerBundles()
     {
-        return array(
+        $bundles = array(
             // ...
-            new Bundle\Knplabs\PiwikBundle\KnplabsPiwikBundle(),
+            new Knplabs\Bundle\PiwikBundle\KnplabsPiwikBundle(),
             // ...
         );
     }
@@ -34,14 +34,14 @@ Provides support for Piwik API into your Symfony2 projects.
 ### Turn on piwik bundle in application config
 
     # app/config/config.yml
-    piwik.config: ~
+    knplabs_piwik:  ~
 
 ## Configuration
 
 ### HTTP client (Piwik on remote server)
 
     # app/config/config.yml
-    piwik.config:
+    knplabs_piwik:
         connection: piwik.connection.http
         url:        http://piwik.example.com
         token:      PIWIK_API_TOKEN
@@ -62,7 +62,7 @@ And to autoload.php:
 ### Local PHP client (Piwik on local server)
 
     # app/config/config_dev.yml
-    piwik.config:
+    knplabs_piwik:
         connection: piwik.connection.piwik
         token:      PIWIK_API_TOKEN
 
@@ -79,7 +79,7 @@ You need to require Piwik library in autoload.php:
 There is another connection, called stub. It's used for testing:
 
     # app/config/config_test.yml
-    piwik.config:
+    knplabs_piwik:
         connection: piwik.connection.stub
 
 ## Usage
@@ -101,4 +101,3 @@ To see all available methods & their parameters, visit [Piwik API Reference](htt
 ## Copyright
 
 PiwikClient Copyright (c) 2011 knpLabs <http://www.knplabs.com>. See LICENSE for details.
-
