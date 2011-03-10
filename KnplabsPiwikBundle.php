@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Knplabs\PiwikBundle;
+namespace Knplabs\Bundle\PiwikBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerInterface;
