@@ -33,23 +33,43 @@ class KnplabsPiwikExtension extends Extension
             $loader->load('piwik.xml');
         }
 
-        foreach ($configs as $config) {
-            if (isset($config['connection'])) {
-                $definition     = $container->getDefinition('piwik.client');
-                $arguments      = $definition->getArguments();
-                $arguments[0]   = new Reference($config['connection']);
-                $definition->setArguments($arguments);
-            }
-            if (isset($config['url'])) {
-                $container->setParameter('piwik.connection.http.url', $config['url']);
-            }
-            if (isset($config['init'])) {
-                $container->setParameter('piwik.connection.piwik.init', (bool) $config['init']);
-            }
-            if (isset($config['token'])) {
-                $container->setParameter('piwik.client.token', $config['token']);
-            }
+        $config = $this->mergeConfigs($configs);
+
+        if (isset($config['connection'])) {
+            $definition     = $container->getDefinition('piwik.client');
+            $arguments      = $definition->getArguments();
+            $arguments[0]   = new Reference($config['connection']);
+            $definition->setArguments($arguments);
         }
+
+        if (isset($config['url'])) {
+            $container->setParameter('piwik.connection.http.url', $config['url']);
+        }
+
+        if (isset($config['init'])) {
+            $container->setParameter('piwik.connection.piwik.init', (bool) $config['init']);
+        }
+
+        if (isset($config['token'])) {
+            $container->setParameter('piwik.client.token', $config['token']);
+        }
+    }
+
+    /**
+     * Merges the given configurations array
+     *
+     * @param  array $config
+     *
+     * @return array
+     */
+    protected function mergeConfigs(array $configs)
+    {
+        $merged = array();
+        foreach ($configs as $config) {
+            $merged = array_merge($merged, $config);
+        }
+
+        return $merged;
     }
 
     /**
