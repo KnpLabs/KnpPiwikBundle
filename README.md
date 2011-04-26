@@ -31,11 +31,6 @@ Provides support for Piwik API into your Symfony2 projects.
         );
     }
 
-### Turn on piwik bundle in application config
-
-    # app/config/config.yml
-    knplabs_piwik:  ~
-
 ## Configuration
 
 ### HTTP client (Piwik on remote server)
