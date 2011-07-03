@@ -1,16 +1,16 @@
 <?php
 
-namespace Knplabs\Bundle\PiwikBundle\Tests\DependencyInjection;
+namespace Knp\Bundle\PiwikBundle\Tests\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
-use Knplabs\Bundle\PiwikBundle\DependencyInjection\PiwikExtension;
+use Knp\Bundle\PiwikBundle\DependencyInjection\PiwikExtension;
 
 /*
  * This file is part of the PiwikBundle.
- * (c) 2011 knpLabs <http://www.knplabs.com>
+ * (c) 2011 Knp Labs <http://www.knplabs.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -36,7 +36,7 @@ class PiwikExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->extension->configLoad(array(), $this->container);
 
-        $this->assertEquals('Knplabs\PiwikClient\Client', $this->container->getParameter('piwik.client.class'));
+        $this->assertEquals('Knp\PiwikClient\Client', $this->container->getParameter('piwik.client.class'));
         $this->assertNull($this->container->getParameter('piwik.client.token'));
         $definition = $this->container->getDefinition('piwik.client');
         $this->assertEquals('%piwik.client.class%', $definition->getClass());
@@ -45,7 +45,7 @@ class PiwikExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('%piwik.client.token%', $args[1]);
 
         $this->assertEquals(
-            'Knplabs\PiwikClient\Connection\HttpConnection',
+            'Knp\PiwikClient\Connection\HttpConnection',
             $this->container->getParameter('piwik.connection.http.class')
         );
         $this->assertNull($this->container->getParameter('piwik.connection.http.url'));
@@ -55,7 +55,7 @@ class PiwikExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('%piwik.connection.http.url%', $args[0]);
 
         $this->assertEquals(
-            'Knplabs\PiwikClient\Connection\PiwikConnection',
+            'Knp\PiwikClient\Connection\PiwikConnection',
             $this->container->getParameter('piwik.connection.piwik.class')
         );
         $this->assertFalse($this->container->getParameter('piwik.connection.piwik.init'));

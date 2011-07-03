@@ -1,6 +1,6 @@
 <?php
 
-namespace Knplabs\Bundle\PiwikBundle\DependencyInjection;
+namespace Knp\Bundle\PiwikBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -12,12 +12,12 @@ use Symfony\Component\Config\Resource\FileResource;
 
 /*
  * This file is part of the PiwikBundle.
- * (c) 2011 knpLabs <http://www.knplabs.com>
+ * (c) 2011 Knp Labs <http://www.knplabs.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-class KnplabsPiwikExtension extends Extension
+class KnpPiwikExtension extends Extension
 {
     /**
      * Loads the piwik configuration.
@@ -89,6 +89,6 @@ class KnplabsPiwikExtension extends Extension
 
     public function getAlias()
     {
-        return 'knplabs_piwik';
+        return 'knp_piwik';
     }
 }
