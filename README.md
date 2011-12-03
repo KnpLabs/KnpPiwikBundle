@@ -4,7 +4,7 @@ Provides support for Piwik API into your Symfony2 projects.
 
 ### Add Knp\PiwikClient to vendors
 
-    git submodule add git://github.com/knplabs/KnpPiwikClient.git vendor/PiwikClient
+    git submodule add git://github.com/KnpLabs/KnpPiwikClient.git vendor/PiwikClient
 
 ### Specify Knp\PiwikClient in autoload.php
 
@@ -17,7 +17,7 @@ Provides support for Piwik API into your Symfony2 projects.
 
 ### Add Knp\PiwikBundle to your src/Bundle dir
 
-    git submodule add git://github.com/knplabs/PiwikBundle.git vendor/bundles/Knp/Bundle/PiwikBundle
+    git submodule add git://github.com/KnpLabs/PiwikBundle.git vendor/bundles/Knp/Bundle/PiwikBundle
 
 ### Add KnpPiwikBundle to your application kernel
 
@@ -98,4 +98,4 @@ To see all available methods & their parameters, visit [Piwik API Reference](htt
 
 ## Copyright
 
-PiwikClient Copyright (c) 2011 Knp Labs <http://www.knplabs.com>. See LICENSE for details.
+PiwikClient Copyright (c) 2011 KnpLabs <http://KnpLabs.com>. See LICENSE for details.
