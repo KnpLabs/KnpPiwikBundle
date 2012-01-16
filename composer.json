@@ -1,0 +1,33 @@
+{
+    "name":        "knplabs/knp-piwik-client-bundle",
+    "type":        "symfony-bundle",
+    "description": "Piwik API client bundle for Symfony2.",
+    "keywords":    ["piwik", "analytics", "knplabs", "knp", "bundle"],
+    "homepage":    "http://github.com/KnpLabs/KnpPiwikBundle",
+    "license":     "MIT",
+
+    "authors": [
+        {
+            "name": "KnpLabs Team",
+            "homepage": "http://knplabs.com"
+        },
+        {
+            "name": "Symfony Community",
+            "homepage": "http://github.com/KnpLabs/KnpPiwikBundle/contributors"
+        }
+    ],
+
+    "require": {
+        "php":                      ">=5.3.2",
+        "symfony/framework-bundle": ">=2.0.0",
+        "knplabs/knp-piwik-client": "*"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Knp\\Bundle\\PiwikBundle": ""
+        }
+    },
+
+    "target-dir": "Knp/Bundle/PiwikBundle"
+}
