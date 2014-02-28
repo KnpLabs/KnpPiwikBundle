@@ -1,3 +1,7 @@
+## Not actively maintained
+
+This project is not actively maintained by KnpLabs. Please contact us if you would like to take over.
+
 Provides support for Piwik API into your Symfony2 projects.
 
 ## Installation
